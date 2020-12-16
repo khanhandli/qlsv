@@ -79,7 +79,7 @@
     	<div class="header">
     			<ul class="header__list row no-gutters">
     				<li class="header__list-item"><a href="#">Trang chủ</a></li>
-    				<li class="header__list-item"><a href="#">Cập nhập nhà cung ứng</a></li>
+    				<li class="header__list-item"><a href="#">Cập nhập nhà sản xuất</a></li>
     				<li class="header__list-item"><a href="updateItem.php">Cập nhập và xóa mặt hàng</a></li>
     				<li class="header__list-item"><a href="#">Liên hệ</a></li>
     			</ul>
@@ -87,21 +87,21 @@
     	<div class="grid wide" style="margin-top: 100px;">
     		
     		<div class="container">
-    			<h1>Nhà Cung Ứng</h1>
+    			<h1>Nhà Sản Xuất</h1>
     			<div class="form">
     				<form action="" method="post" class="form row gutters">
     					<div class="form__left c-6">
     						<div class="form__left-input">
-    							<label for="mancu">Ma Nha Cung Ung</label>
+    							<label for="mancu">Mã nhà sản xuất</label>
     						    <input type="text" name="mancu" id="mancu" value="<?=$macu2?>">
     						</div>
     						<div class="form__left-input">
-	    						<label for="tencu">Ten Nha Cung Ung</label>
+	    						<label for="tencu">Tên nhà sản xuất</label>
 	    						<input type="text" name="tencu" id="tencu" value="<?=$tencu2?>">
  							</div>
     						<div class="form__left-input">
 
-	    						<label for="sdt">So Dien Thoai</label>
+	    						<label for="sdt">Số điện thoại</label>
 	    						<input type="text" name="sdt" id="sdt" value="<?=$sdt2?>">
 							</div>
     						<div class="form__left-input">
@@ -112,23 +112,32 @@
     					</div>
     					<div class="form__right c-6">
     						<div class="form__right-input">
-    							<label for="sanpham">San Pham Nha Cung Cap</label>
-    						<select name="sanpham" id="sanpham">
+    							<label for="sanpham">Sản phẩm nhà sản xuất</label>
+    						<!-- <select name="sanpham" id="sanpham">
     							<option value="<?=$sanpham2?>">Apple iPhone XS max</option>
     							<option value="AppleiPhoneSmax">Apple iPhone XS max</option>
     							<option value="AppleiPhoneXSmax">Apple iPhone XS max</option>
-    						</select>
+    						</select> -->
+                            <input type="text" name="sanpham" id="sanpham" value="<?=$sanpham2?>">
     						</div>
 
     						<div class="form__right-input">
-    							<label for="diachi">Dia chi</label>
+    							<label for="diachi">Địa chỉ</label>
     							<input type="text" name="diachi" id="diachi" value="<?=$diachi2?>">
     						</div>
-    						<button class="btn btn-primary">Luu</button>
+    						<button class="btn btn-primary">Lưu</button>
 
     					</div>
     				</form>
     			</div>	
+                <form action="" method="get" class="" style="
+    top: 59%;
+    left: 59%;
+">
+                        
+                        <div class="login-tenkho "><input type="text" name="timkiem" placeholder="Tên nhà cung ứng cần tìm">
+                            <button >Tìm kiếm</button></div>
+                        </form>
     			<div class="table">
     				<table class="table table-bordered table-hover">
     					<thead>
@@ -147,7 +156,7 @@
     					<tbody>
 <?php 
 if (isset($_GET['timkiem']) && $_GET['timkiem'] != '') {
-    $sql = "SELECT * FROM NhaCungUng WHERE MaCungUng LIKE %".$_GET['timkiem']."%";
+    $sql = "SELECT * FROM NhaCungUng WHERE TenCungUng LIKE '%".$_GET['timkiem']."%'";    
 } else {
     $sql = "SELECT * FROM NhaCungUng";
 }
@@ -162,8 +171,8 @@ if (isset($_GET['timkiem']) && $_GET['timkiem'] != '') {
                 <td>'.$ncu1['Email'].'</td>
                 <td>'.$ncu1['SanPham'].'</td>
                 <td>'.$ncu1['DiaChi'].'</td>
-                <td><div class="btn11" onclick=\'window.open("updateNCC.php?id='.$ncu1['id'].'","_self")\'>Sửa</div></td>
-                <td><div class="btn11" onclick="deleteNCU('.$ncu1['id'].')">Xóa</div></td>
+                <td><div class="btn btn-block" onclick=\'window.open("updateNCC.php?id='.$ncu1['id'].'","_self")\'>Sửa</div></td>
+                <td><div class="btn btn-block" onclick="deleteNCU('.$ncu1['id'].')">Xóa</div></td>
             </tr>
         ';
     }

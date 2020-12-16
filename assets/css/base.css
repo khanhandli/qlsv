@@ -179,4 +179,8 @@ html {
     border-radius: 2px;
 }
 
+select {
+    width: 34%;
+}
+
     
