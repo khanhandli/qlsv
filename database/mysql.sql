@@ -1,9 +1,9 @@
---tao user
-CREATE TABLE user(user VARCHAR(50),password VARCHAR(50));
--- table nha cung ung
-CREATE TABLE NhaCungUng( id INT PRIMARY KEY AUTO_INCREMENT, MaCungUng VARCHAR(50), TenCungUng VARCHAR(50), SDT CHAR(50), Email VARCHAR(50), SanPham VARCHAR(50), DiaChi VARCHAR(50));
---tao bang mat hang
-CREATE TABLE MatHang( id INT PRIMARY KEY AUTO_INCREMENT, MaMH VARCHAR(50), TenMH VARCHAR(50), MaNSX VARCHAR(50), GiaNhap FLOAT, NgayCapNhap DATE, TenNSX
-VARCHAR(50), DacDiem VARCHAR(50), SoLuong INT, GiaXuat FLOAT);
-
-
+CREATE TABLE Sinhvien(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    MaSV VARCHAR(50),
+    TenSV VARCHAR(50),
+    Lop VARCHAR(50),
+    DiaChi VARCHAR(50),
+    GioiTinh VARCHAR(50),
+    Tuoi VARCHAR(50)
+   );

@@ -1,74 +1,50 @@
 <?php 
-    $id = $id1 =$mamh = $tenmh = $mansx = $gianhap = $ngaycapnhap = $tennsx = $dacdiem = $soluong = $gia = $mamh2 = $tenmh2 = $mansx2 = $gianhap2 = $ngaycapnhap2 = $tennsx2 = $dacdiem2 = $soluong2 = $gia2 = "";
+    $id = $id1 =$malop = $tenlop = $namhoc = $hocky = $malop2 = $tenlop2 = $diachi2 = $lop2 = $tuoi2 = $gioitinh2  = "";
     require_once('dbhelp.php');
-    $id = $_GET['id'];
     if(!empty($_POST)) {
-        if (isset($_POST['mamh'])) {
-            $mamh = $_POST['mamh'];
+        if (isset($_POST['malop'])) {
+            $malop = $_POST['malop'];
         }
 
-        if (isset($_POST['tenmh'])) {
-            $tenmh = $_POST['tenmh'];
+        if (isset($_POST['tenlop'])) {
+            $tenlop = $_POST['tenlop'];
         }
 
-        if (isset($_POST['mansx'])) {
-            $mansx = $_POST['mansx'];
+        if (isset($_POST['namhoc'])) {
+            $namhoc = $_POST['namhoc'];
         }
 
-        if (isset($_POST['gianhap'])) {
-            $gianhap = $_POST['gianhap'];
+        if (isset($_POST['hocky'])) {
+            $hocky = $_POST['hocky'];
+        }
+        if (isset($_POST['id'])) {
+            $id1 = $_POST['id'];
         }
 
-        if (isset($_POST['ngaycapnhap'])) {
-            $ngaycapnhap = $_POST['ngaycapnhap'];
-        }
-
-        if (isset($_POST['tennsx'])) {
-            $tennsx = $_POST['tennsx'];
-        }
-
-        if (isset($_POST['dacdiem'])) {
-            $dacdiem = $_POST['dacdiem'];
-        }
-
-        if (isset($_POST['soluong'])) {
-            $soluong = $_POST['soluong'];
-        }
-
-        if (isset($_POST['gia'])) {
-            $gia = $_POST['gia'];
-        }
-
-        if ($id != '') {
-            $sql = "UPDATE MatHang SET MaMH = '$mamh', TenMH = '$tenmh', MaNSX = '$mansx',GiaNhap = '$gianhap', NgayCapNhap = '$ngaycapnhap', TenNSX = '$tennsx', DacDiem = '$dacdiem', SoLuong = '$soluong', GiaXuat ='$gia'  WHERE id = " . $id;
+        if ($id1 != '') {
+            $sql = "UPDATE Lop SET MaLop = '$malop', TenLop = '$tenlop', NamHoc = '$namhoc',HocKy = '$hocky' WHERE id = " . $id1;
         } else{
-            $sql = "INSERT INTO MatHang(MaMH,TenMH,MaNSX,GiaNhap,NgayCapNhap,TenNSX,DacDiem,SoLuong,GiaXuat)
-                    VALUES ('$mamh','$tenmh','$mansx','$gianhap','$ngaycapnhap','$tennsx','$dacdiem','$soluong','$gia')
+            $sql = "INSERT INTO Lop(MaLop,TenLop,NamHoc,HocKy)
+                    VALUES ('$malop','$tenlop','$namhoc','$hocky')
                     ";
         }
         execute($sql);
     }
-
+    $id = '';
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
-        $sql = "SELECT * FROM MatHang WHERE id =". $id;
+        $sql = "SELECT * FROM Lop WHERE id =". $id;
         $ncuList = executeResult($sql);
         if ($ncuList != null && count($ncuList) > 0) {
             $ncu = $ncuList[0];
-            $mamh2 = $ncu['MaMH'];
-            $tenmh2 = $ncu['TenMH'];
-            $mansx2 = $ncu['MaNSX'];
-            $gianhap2 = $ncu['GiaNhap'];
-            $ngaycapnhap2 = $ncu['NgayCapNhap'];
-            $tennsx2 =$ncu['TenNSX'];
-            $dacdiem2 = $ncu['DacDiem'];
-            $soluong2 = $ncu['SoLuong'];
-            $gia2 =$ncu['GiaXuat'];
+            $malop2 = $ncu['MaLop'];
+            $tenlop2 = $ncu['TenLop'];
+            $namhoc2 = $ncu['NamHoc'];
+            $hocky2 = $ncu['HocKy'];
         }
     }
  ?>
-
 
 
 <!DOCTYPE html>
@@ -88,152 +64,74 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=vietnamese"
         rel="stylesheet">
     <script src="../assets/js/jquery.js"></script>
-        
+
+
 </head>
 
 <body>
     <div class="app">
-    	<div class="header">
-    			<ul class="header__list row no-gutters">
-    				<li class="header__list-item"><a href="#">Trang chủ</a></li>
-    				<li class="header__list-item"><a href="updateNCC.php">Cập nhập nhà cung cấp</a></li>
-    				<li class="header__list-item"><a href="#">Cập nhập và xóa mặt hàng</a></li>
-    				<li class="header__list-item"><a href="#">Liên hệ</a></li>
-    			</ul>
-    		</div>
-    	<div class="grid wide" style="margin-top: 100px;">
-    		
-    		<div class="container">
-    			<h1>Cập nhập mặt hàng</h1>
-    			<div class="form">
-    				<form action="" method="post" class="form row gutters">
-    					<div class="form__left c-6">
-    						<div class="form__left-input">
-    							<label for="mamh">Ma MH</label>
-    						    <input type="text" name="mamh" id="mamh" value="<?=$mamh2?>">
-    						</div>
-    						<div class="form__left-input">
-	    						<label for="tenmh">Ten MH</label>
-	    						<input type="text" name="tenmh" id="tenmh" value="<?=$tenmh2?>">
- 							</div>
-    						<div class="form__left-input">
-
-	    						<label for="mansx">Ma NSX</label>
-                                <select name="mansx" id="mansx" class="">
-                                                <option value="<?=$mansx2?>"><?=$mansx2?></option>
-                                                <?php 
-                                                        $sql = 'SELECT MaCungUng FROM NhaCungUng';
-                                                    $employeeList = executeResult($sql);
-                                                    foreach ($employeeList as $epl) {
-                                                            echo '<option value= '.$epl['MaCungUng'].'>
-                                                                    '.$epl['MaCungUng'].'
-                                                                    </option>
-                                                                    '  ;                        
-                                                    }
-                                                ?>
-                                            </select>
-							</div>
-    						<div class="form__left-input">
-
-	    						<label for="gianhap">Giá nhập</label>
-	    						<input type="text" name="gianhap" id="gianhap" value="<?=$gianhap2?>">
-    						</div>
-                            <div class="form__left-input">
-                                <label for = "start" >Ngày cập nhập</label>
-                                <input type="date" id="start" name="ngaycapnhap"
-                                           min="2010-01-01" max="2020-12-31" value="<?=$ngaycapnhap2?>">
-                            </div>
-    					</div>
-    					<div class="form__right c-6">
-                            <div class="form__right-input">
-                                <label for="tennsx">Ten NSX</label>
-                                 <select name="tennsx" id="tennsx" class="">
-                                                <option value="<?=$tennsx2?>"><?=$tennsx2?></option>
-                                                <?php 
-                                                        $sql = 'SELECT TenCungUng FROM NhaCungUng';
-                                                        $employeeList1 = executeResult($sql);
-                                                    foreach ($employeeList1 as $epl) {
-                                                            echo '<option value= '.$epl['TenCungUng'].'>
-                                                                    '.$epl['TenCungUng'].'
-                                                                    </option>
-                                                                    '  ;                        
-                                                    }
-                                                ?>
-                                            </select>
-                            </div>
-
-    						<div class="form__right-input">
-    							<label for="dacdiem">Đặc điểm</label>
-    						<select name="dacdiem" id="dacdiem" value="<?=$dacdiem2?>">
-    							<option value="Mới 100%">Mới 100%</option>
-    							<option value="90%">90%</option>
-                                <option value="80%">80%</option>
-    							<option value="50%">50%</option>
-    						</select>
-    						</div>
-
-    						<div class="form__right-input">
-    							<label for="soluong">Số lượng</label>
-    							<input type="text" name="soluong" id="soluong" value="<?=$soluong2?>">
-    						</div>
-                            <div class="form__right-input">
-                                <label for="gia">Giá xuất</label>
-                                <input type="text" name="gia" id="gia" value="<?=$gia2?>">
-                            </div>
-    						<div class="btn__submit">
-    							<button class="btn btn-primary">Lưu</button>
-    						</div>
-
-    					</div>
-    				</form>
-    			</div>	
-                <form action="" method="get" class="" style="
+        <header class="header">
+            <h1>Quan ly sinh vien</h1>
+            <a class="a" href="updateItem.php">Lop</a>
+            <a class="a1" href="updateNCC.php">Sinh vien</a>
+        </header>
+        <div class="grid wide">
+            <div class="row">
+                <div class="c-3">
+                
+                </div>
+                <div class="c-9" style = "margin-bottom: 80px">
+                        <h1>Cap nhap danh sach lop</h1>
+                        <form action="" method="post">
+                            <div class="row" id="row2">
+                                <div class="c-6 flex">
+                                    <input type="text" name="id" value="<?=$id?>" hidden>
+                                    <input type="text" name="masv" placeholder="Nhap Ma Lop" value="<?=$malop2?>">
+                                    <input type="text" name="tensv" placeholder="Nhap Ten Lop" value="<?=$tenlop2?>">
+                                </div>
+                                <div class="c-6 flex">
+                                    <input type="text" name="diachi" placeholder="Nhap Nam Hoc" value="<?=$namhoc2?>">
+                                    <input type="text" name="tuoi" placeholder="Nhap Hoc Ky" value="<?=$hocky2?>">
+                                </div>
+                                <button class="btn btn-primary">Luu</button>
+                            </div>   
+                        </form>
+                        <form action="" method="get" class="" style="
     top: 59%;
     left: 59%;
 ">
                         
-                        <div class="login-tenkho "><input type="text" name="timkiem" placeholder="Tên mặt hàng cần tìm">
+                        <div class="login-tenkho "><input type="text" name="timkiem" placeholder="Tên Lop can tim">
                             <button >Tìm kiếm</button></div>
                         </form>
-    			<div class="table">
-    				<table class="table table-bordered table-hover">
-    					<thead>
-    					<tr>
-    						<th>STT</th>
-    						<th>Mã mặt hàng</th>
-    						<th>Tên mặt hàng</th>
-    						<th>Mã nhà sản xuất</th>
-    						<th>Giá nhập</th>
-    						<th>Ngày cập nhập</th>
-                            <th>Tên nhà sản xuất</th>
-                            <th>Đặc điểm</th>
-                            <th>Số lượng</th>
-                            <th>Giá xuất</th>
-                            <th></th>
-                            <th></th>
-    					</tr>
-    					</thead>
-    					<tbody>
-    					<?php 
+                        <table class="table table-bordered table-hover" style="margin-top: 40px;">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Ma Lop</th>
+                                    <th>Ten Lop</th>
+                                    <th>Nam Hoc</th>
+                                    <th>Hoc Ky</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
 if (isset($_GET['timkiem']) && $_GET['timkiem'] != '') {
-    $sql = 'SELECT * FROM MatHang WHERE TenMH LIKE "%'.$_GET['timkiem'].'%"';
+    $sql = 'SELECT * FROM Lop WHERE TenLop LIKE "%'.$_GET['timkiem'].'%"';
 } else {
-    $sql = "SELECT * FROM MatHang";
+    $sql = "SELECT * FROM Lop";
 }
     $ncuList1 = executeResult($sql);
 
     foreach ($ncuList1 as $ncu1) {
         echo '<tr>
                 <td>'.$ncu1['id'].'</td>
-                <td>'.$ncu1['MaMH'].'</td>
-                <td>'.$ncu1['TenMH'].'</td>
-                <td>'.$ncu1['MaNSX'].'</td>
-                <td>'.$ncu1['GiaNhap'].'</td>
-                <td>'.$ncu1['NgayCapNhap'].'</td>
-                <td>'.$ncu1['TenNSX'].'</td>
-                <td>'.$ncu1['DacDiem'].'</td>
-                <td>'.$ncu1['SoLuong'].'</td>
-                <td>'.$ncu1['GiaXuat'].'</td>
+                <td>'.$ncu1['MaLop'].'</td>
+                <td>'.$ncu1['TenLop'].'</td>
+                <td>'.$ncu1['NamHoc'].'</td>
+                <td>'.$ncu1['HocKy'].'</td>
                 <td><div class="btn btn-block" onclick=\'window.open("updateItem.php?id='.$ncu1['id'].'","_self")\'>Sửa</div></td>
                 <td><div class="btn btn-block" onclick="deleteNCU('.$ncu1['id'].')">Xóa</div></td>
             </tr>
@@ -241,12 +139,11 @@ if (isset($_GET['timkiem']) && $_GET['timkiem'] != '') {
     }
 
 ?>
-    					
-    					</tbody>
-    				</table>
-    			</div>				
-    		</div>
-    	</div>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
     </div>
     <script type="text/javascript">
         function deleteNCU(id) {
@@ -262,6 +159,7 @@ if (isset($_GET['timkiem']) && $_GET['timkiem'] != '') {
             })
                 }
     </script>
+
 </body>
 
 </html>

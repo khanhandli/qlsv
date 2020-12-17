@@ -26,7 +26,7 @@
         $username = "root"; // Khai báo username
         $password = "";      // Khai báo password
         $server   = "localhost";   // Khai báo server
-        $dbname   = "QLDT";      // Khai báo database
+        $dbname   = "QLSV";      // Khai báo database
         // Kết nối database
         $connect = new mysqli($server, $username, $password, $dbname);
         //Nếu kết nối bị lỗi thì xuất báo lỗi và thoát.
@@ -34,7 +34,6 @@
         die("Không kết nối :" . $conn->connect_error);
         exit();}
         // dang nhap
-        $sql = "SELECT user,password FROM user";
         $result = mysqli_query($connect, $sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -86,7 +85,7 @@
         rel="stylesheet">
         <style>
             body,html {
-                background-color: rgba(153, 255, 51, .5);
+                background-color: #ccc;
                 height: 100%;
                 width: 100%;
                 overflow: hidden;
@@ -103,7 +102,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                background-color: #55acee;
+                background-color: orange;
             }
 
             .user,.password {
@@ -144,12 +143,12 @@
 
 <body>
     <form action="" method="post" class="form">
-        <h1>Login Form</h1>
+        <h1>Dang nhap</h1>
         <div class="user">
-            <input type="text" name="user" id="user" placeholder="USER"> 
+            <input type="text" name="user" id="user" placeholder="Ten dang nhap"> 
         </div>
         <div class="password">
-            <input type="text" name="password1" id="password1" placeholder="PASSWORD"> 
+            <input type="password" name="password1" id="password1" placeholder="Mat khau"> 
         </div>
         <div class="btn">
             <button name="DN">Đăng Nhập</button>
